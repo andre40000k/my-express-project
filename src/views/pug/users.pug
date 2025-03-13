@@ -1,0 +1,10 @@
+doctype html
+html
+  head
+    title List of users
+  body
+    h1 List of users
+    ul
+      each user in users
+        li 
+          a(href=`/users/${user.id}`) #{user.name} (#{user.age} years)
