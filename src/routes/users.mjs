@@ -5,10 +5,12 @@ import {
     getUsersHandler
 } from "../controllers/users.mjs";
 
+import {authMiddleware} from "../middleware/auth.mjs";
+
 const usersRouter = express.Router();
 
-usersRouter.route("/").get(getUsersHandler);
+usersRouter.route("/").get(authMiddleware, getUsersHandler);
 
-usersRouter.route("/:userId").get(getUserByIdHandler)
+usersRouter.route("/:userId").get(authMiddleware, getUserByIdHandler);
 
-export default usersRouter; 
+export default usersRouter;  

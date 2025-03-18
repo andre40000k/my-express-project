@@ -1,4 +1,4 @@
-import {articles} from "../../database/data.mjs";
+import articles from "../../database/articles.json" with  { type: "json" };
 
 export const getArticlesHandler = (req, res) => {
     res.render("ejs/articles.ejs", { articles: articles });

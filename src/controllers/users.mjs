@@ -1,4 +1,4 @@
-import { users } from "../../database/data.mjs";
+import users from "../../database/users.json" with  { type: "json" };
 
 export const getUsersHandler = (req, res) => {
   res.render("pug/users", { users: users });

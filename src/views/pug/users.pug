@@ -2,7 +2,14 @@ doctype html
 html
   head
     title List of users
-  body
+    link(rel="icon" href="/favicon.ico")
+    //- link(rel="stylesheet" href="/css/styles.css")
+  body(class=theme)
+  form(action="/settings/theme" method="POST")
+    select(name="theme")
+      option(value="light") Світла
+      option(value="dark") Темна
+    button(type="submit") Зберегти
     h1 List of users
     ul
       each user in users

@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "A",
+    "age": 25,
+    "email": "test@com.n",
+    "password": "qwert"
+  },
+  {
+    "id": 2,
+    "name": "B",
+    "age": 3,
+    "email": "test1",
+    "password": "qwert"
+  },
+  {
+    "id": 3,
+    "name": "C",
+    "age": 324,
+    "email": "test2",
+    "password": "qwert"
+  },
+  {
+    "id": 4,
+    "name": "D",
+    "age": 234,
+    "email": "test3",
+    "password": "qwert"
+  }
+]
