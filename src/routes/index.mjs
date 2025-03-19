@@ -7,7 +7,7 @@ import themeRouter from "./theme.mjs"
 
 const router = express.Router();
 
-// router.use("/", rootRouter);
+router.use("/", rootRouter);
 router.use("/users", usersRouter);
 router.use("/articles", articlesRouter);
 router.use("/auth", authRouter);

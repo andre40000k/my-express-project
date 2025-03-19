@@ -10,7 +10,7 @@ export const registerHandler = (req, res) => {
     const existingUser = users.find((u) => u.email === email);
 
     if (existingUser) {
-      return res.status(400).json({ message: "Користувач вже існує" });
+      return res.status(400).json({ message: "User already exists" });
     }
 
     const newUser = {
@@ -23,8 +23,8 @@ export const registerHandler = (req, res) => {
 
     const token = jwt.sign({ userId: newUser.id }, JWT_SECRET, { expiresIn: "1d" });
     res.cookie("token", token, COOKIE_OPTIONS);
-    res.status(201).json({ message: "Користувача створено" });
+    res.status(201).json({ message: "User created" });
   } catch (err) {
-    res.status(500).json({ message: "Помилка сервера" });
+    res.status(500).json({ message: "Server Error" });
   }
 };

@@ -9,6 +9,6 @@ export const getUserByIdHandler = (req, res) => {
   if (user) {
     res.render("pug/user", { user });
   } else {
-    res.status(404).send("Користувач не знайдений");
+    res.status(404).send("User not found");
   }
 };

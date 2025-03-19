@@ -6,7 +6,7 @@ export const authMiddleware = (req, res, next) => {
   const token = req.cookies.token;
 
   if (!token) {
-    return res.status(401).json({ message: "Не авторизовано" });
+    return res.status(401).json({ message: "Not authorized" });
   }
 
   try {
@@ -14,6 +14,6 @@ export const authMiddleware = (req, res, next) => {
     req.userId = decoded.userId;
     next();
   } catch (err) {
-    res.status(401).json({ message: "Не авторизовано" });
+    res.status(401).json({ message: "Not authorized" });
   }
 };

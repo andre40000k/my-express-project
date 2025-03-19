@@ -15,8 +15,6 @@ const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(favicon(path.join(__dirname, "./public/favicon.ico")));
 
@@ -41,11 +39,6 @@ app.use(themeMiddleware);
 
 app.use(router);
 app.use(errors());
-
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "login.html"));
-});
 
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
