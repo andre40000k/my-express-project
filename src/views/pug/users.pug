@@ -3,13 +3,14 @@ html
   head
     title List of users
     link(rel="icon" href="/favicon.ico")
-    //- link(rel="stylesheet" href="/css/styles.css")
+    link(rel="stylesheet" href="/css/styles.css")
   body(class=theme)
-  form(action="/settings/theme" method="POST")
-    select(name="theme")
-      option(value="light") Light
-      option(value="dark") Dark
-    button(type="submit") Save
+    form(action="/settings/theme" method="POST")
+      select(name="theme")
+        option(value="light" selected=theme === 'light') light
+        option(value="dark" selected=theme === 'dark') dark 
+      button(type="submit") Save
+    
     h1 List of users
     ul
       each user in users

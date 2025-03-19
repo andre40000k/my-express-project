@@ -11,4 +11,4 @@ articlesRouter.route("/").get(getArticlesHandler);
 
 articlesRouter.route("/:articleId").get(getArticleByIdHandler)
 
-export default articlesRouter; 
+export default articlesRouter;
