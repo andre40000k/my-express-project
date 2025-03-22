@@ -1,30 +1,17 @@
-import users from "../../database/users.json" with  { type: "json" };
-import jwt from "jsonwebtoken";
-import configuration from "./authConfiguration.mjs"
+import { User } from "../models/user.mjs";
 
-const {JWT_SECRET, COOKIE_OPTIONS} = configuration;
-
-export const registerHandler = (req, res) => {
+export const registerHandler = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const existingUser = users.find((u) => u.email === email);
+    console.log(req.body);
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ error: "User already exists" });
 
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
-    const newUser = {
-      id: Date.now(),
-      email,
-      password: password,
-    };
-
-    users.push(newUser);
-
-    const token = jwt.sign({ userId: newUser.id }, JWT_SECRET, { expiresIn: "1d" });
-    res.cookie("token", token, COOKIE_OPTIONS);
-    res.status(201).json({ message: "User created" });
+    const user = new User({ email, password });
+    await user.save();
+    res.redirect("/login");
   } catch (err) {
-    res.status(500).json({ message: "Server Error" });
+    console.log(err)
+    res.status(500).json({ error: "Server Error" });
   }
 };

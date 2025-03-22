@@ -5,7 +5,7 @@ import {
     getUsersHandler
 } from "../controllers/users.mjs";
 
-import {authMiddleware} from "../middleware/auth.mjs";
+import { authMiddleware } from '../middleware/auth.mjs'; // Правильный путь
 
 const usersRouter = express.Router();
 
