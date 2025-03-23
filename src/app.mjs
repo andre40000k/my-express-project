@@ -8,6 +8,7 @@ import ejs from "ejs";
 import pug from "pug";
 import cookieParser from "cookie-parser";
 import { themeMiddleware } from "./middleware/theme.mjs";
+<<<<<<< HEAD
 import favicon from "serve-favicon";
 
 import "./auth/passport.mjs";
@@ -21,6 +22,15 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
   
 import passport from "passport";
+=======
+import favicon from 'serve-favicon';
+import passport from "passport";
+import "./strategies/local.mjs"; 
+import session from "express-session";
+import mongoose from "mongoose";
+
+import MongoStore from "connect-mongo";
+>>>>>>> 04f05a8d3463610105fab753d9daa5c5b3676928
 
 const app = express();
 const PORT = 3000;
@@ -28,7 +38,14 @@ const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+<<<<<<< HEAD
 
+=======
+mongoose
+  .connect("mongodb://localhost:27017/testDb")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+>>>>>>> 04f05a8d3463610105fab753d9daa5c5b3676928
 
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(favicon(path.join(__dirname, "./public/favicon.ico")));
