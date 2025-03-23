@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import router from "./routes/index.mjs";
 import { errors } from "celebrate";
@@ -7,13 +8,19 @@ import ejs from "ejs";
 import pug from "pug";
 import cookieParser from "cookie-parser";
 import { themeMiddleware } from "./middleware/theme.mjs";
-import favicon from 'serve-favicon';
-import passport from "passport";
-import "./strategies/local.mjs"; 
+import favicon from "serve-favicon";
+
+import "./auth/passport.mjs";
 import session from "express-session";
 import mongoose from "mongoose";
-
 import MongoStore from "connect-mongo";
+
+mongoose
+  .connect("mongodb://localhost:27017/testDb")
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+  
+import passport from "passport";
 
 const app = express();
 const PORT = 3000;
@@ -21,10 +28,7 @@ const PORT = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-mongoose
-  .connect("mongodb://localhost:27017/testDb")
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+
 
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(favicon(path.join(__dirname, "./public/favicon.ico")));

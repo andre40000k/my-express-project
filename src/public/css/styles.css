@@ -11,3 +11,147 @@ body.dark {
 body.dark a {
   color: #90caf9;
 }
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.auth-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-title {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 500;
+    color: #333;
+}
+
+input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+}
+
+button {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+.btn-google {
+    background: #db4437;
+    color: white;
+}
+
+.btn-google:hover {
+    background: #c23325;
+}
+
+.btn-logout {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-logout:hover {
+    background: #5a6268;
+}
+
+.divider {
+    text-align: center;
+    color: #666;
+    position: relative;
+    margin: 1rem 0;
+}
+
+.divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ddd;
+    z-index: 1;
+}
+
+.divider span {
+    background: white;
+    padding: 0 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.link {
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+    display: block;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .auth-card {
+        padding: 1.5rem;
+    }
+}
