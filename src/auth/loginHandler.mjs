@@ -4,5 +4,3 @@ export const loginHandler = passport.authenticate("local", {
   successRedirect: "/users",
   failureRedirect: "/"
 });
-
-export default loginHandler;
