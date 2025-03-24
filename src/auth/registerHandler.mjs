@@ -13,7 +13,7 @@ export const registerHandler = async (req, res) => {
     await user.save();
       req.login(user, (err) => {
         if (err) return next(err);
-        return res.redirect("/users"); // Перенаправление на страницу после логина
+        return res.redirect("/users");
       });
   } catch (err) {
     console.log(err)
