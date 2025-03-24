@@ -8,5 +8,3 @@ export const googleAuthCallback = passport.authenticate("google", {
   successRedirect: "/users",
   failureRedirect: "/",
 });
-
-export default { initGoogleAuth, googleAuthCallback };

@@ -7,5 +7,3 @@ export const logoutHandler = (req, res) => {
     res.redirect("/");
   });
 };
-
-export default logoutHandler;
