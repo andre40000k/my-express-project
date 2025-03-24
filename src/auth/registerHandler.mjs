@@ -11,7 +11,10 @@ export const registerHandler = async (req, res) => {
     const hashadPassword = await bcrypt.hash(password, salt);
     const user = new User({ email: email, password: hashadPassword, age: age, name:name });
     await user.save();
-    res.redirect("/auth/login");
+      req.login(user, (err) => {
+        if (err) return next(err);
+        return res.redirect("/users"); // Перенаправление на страницу после логина
+      });
   } catch (err) {
     console.log(err)
     res.status(500).json({ error: "Server Error" });
