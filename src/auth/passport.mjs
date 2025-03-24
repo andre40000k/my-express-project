@@ -4,7 +4,7 @@ import { setupGoogleStrategy } from "./strategies/google.mjs";
 import { User } from "../models/user.mjs";
 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(async (id, done) => {
