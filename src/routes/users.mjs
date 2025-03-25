@@ -13,4 +13,4 @@ usersRouter.route("/").get(authMiddleware, getUsersHandler);
 
 usersRouter.route("/:userId").get(authMiddleware, getUserByIdHandler);
 
-export default usersRouter;  
+export default usersRouter;

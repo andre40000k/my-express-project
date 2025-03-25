@@ -1,8 +1,17 @@
-export const removeArticleByIdHandler = (req, res) => {
-  const article = articles.find((a) => a.id == req.params.articleId);
-  if (article) {
-    res.render("ejs/ticle.ejs", { article });
-  } else {
-    res.status(404).send("Not found");
+import { Article } from "../../models/article.mjs";
+
+export const removeArticleByIdHandler = async (req, res) => {
+  try {
+    console.log(req.params);
+    const result = await Article.deleteOne({ _id: req.params.articleId });
+
+    if (result.deletedCount > 0) {
+      res.redirect("/articles/list");
+    } else {
+      res.status(404).send("Article not found");
+    }
+  } catch (error) {
+    console.error("Error deleting article:", error);
+    res.status(500).send("Error deleting article");
   }
 };

@@ -10,4 +10,4 @@ const articleSchema = new mongoose.Schema({
   content: String,
 });
 
-export const Article = mongoose.model("Article", articleSchema);
+export const Article = mongoose.model("Article", articleSchema); 
