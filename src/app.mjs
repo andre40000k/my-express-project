@@ -16,14 +16,13 @@ import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 
 mongoose
-  .connect("mongodb://localhost:27017/testDb")
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
 import passport from "passport";
 
 const app = express();
-const PORT = 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -42,10 +41,10 @@ app.engine("pug", (filePath, data, cb) => {
 
 app.use(
   session({
-    secret: "your_secret_key",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: "mongodb://localhost:27017/testDb" }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     cookie: {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -70,8 +69,8 @@ app.use(passport.session());
 app.use(router);
 app.use(errors());
 
-app.listen(PORT, () => {
-  console.log(`Сервер запущен на http://localhost:${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Сервер запущен на http://localhost:${process.env.PORT}`);
 });
 
 // http://localhost:3000/users – список пользователей
