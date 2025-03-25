@@ -35,12 +35,28 @@ npm run dev
 📌 **Пользователи**:
 
 - 📋 [Список пользователей](http://localhost:3000/users) – `GET /users` доступна после авторизации. Также применяется тема (авторизация валидна 1 день, куки темы – 10 секунд).
-- 🔍 [Детали пользователя](http://localhost:3000/users/1) – `GET /users/1` доступна после авторизации.
+- 🔍 [Детали пользователя](http://localhost:3000/users/1) – `GET /users/:userId` доступна после авторизации.
 
 📌 **Статьи**:
 
-- 📜 [Список статей](http://localhost:3000/articles) – `GET /articles`
-- 📖 [Детали статьи](http://localhost:3000/articles/1) – `GET /articles/1`
+- 📜 [Список статей](http://localhost:3000/articles/list) – `GET /articles/list`
+- 📖 [Детали статьи](http://localhost:3000/articles/list/1) – `GET /articles/list/:articleId`
+- ➕ [Добавить статью](http://localhost:3000/articles/add) – `GET /articles/add` и `POST /articles/add`
+
+📌 **Аутентификация**:
+
+- 🔐 [Регистрация](http://localhost:3000/auth/register) – `POST /auth/register`
+- 🔑 [Вход](http://localhost:3000/auth/login) – `POST /auth/login`
+- 🚪 [Выход](http://localhost:3000/auth/logout) – `GET /auth/logout`
+- 🔗 [Google OAuth](http://localhost:3000/auth/google) – `GET /auth/google` и `GET /auth/google/callback`
+
+📌 **Настройки**:
+
+- 🎨 [Изменение темы](http://localhost:3000/settings/theme) – `POST /settings/theme`
+
+📌 **Корневой маршрут**:
+
+- 🌐 [Главная страница](http://localhost:3000/) – `GET /`
 
 ---
 
@@ -67,4 +83,22 @@ PORT=xxxx - порт сервера, который установлен в пр
 
 ## 🗄️ База данных
 
-Проект подключен к базе данных **MongoDB** (в файле app.mjs в строке .connect("") вставить ссылку на базу данных. Например .connect("mongodb://localhost:27017/testDb") где localhost:27017 сервер, а  testDb - имя баззы данных. То же самое сделать в файле .env). Убедитесь, что у вас запущен сервер MongoDB перед стартом проекта.
+Проект подключен к базе данных **MongoDB** (в файле [src/app.mjs](src/app.mjs) в строке `.connect("")` вставить ссылку на базу данных. Например `.connect("mongodb://localhost:27017/testDb")` где `localhost:27017` сервер, а `testDb` - имя базы данных. То же самое сделать в файле `.env`). Убедитесь, что у вас запущен сервер MongoDB перед стартом проекта.
+
+---
+
+## 🛠️ Основные технологии
+
+- **Node.js** – серверная платформа.
+- **Express** – веб-фреймворк для Node.js.
+- **Passport** – библиотека для аутентификации.
+- **MongoDB** – база данных.
+- **Mongoose** – ODM для MongoDB.
+- **EJS** и **Pug** – шаблонизаторы для рендеринга HTML.
+- **dotenv** – для работы с переменными окружения.
+- **bcrypt** – для хеширования паролей.
+- **connect-mongo** – для хранения сессий в MongoDB.
+- **serve-favicon** – для обслуживания фавиконок.
+- **cookie-parser** – для работы с куками.
+- **celebrate** – для валидации запросов.
+- **uuid** – для генерации уникальных идентификаторов.
