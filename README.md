@@ -10,7 +10,7 @@ npm install
 
 Вы можете запустить сервер в двух режимах:
 
-🔹 **Обычный запуск:**
+🔹 **Обычный запуск**:
 
 ```sh
 npm run start
@@ -18,7 +18,7 @@ npm run start
 
 *Сервер запустится с помощью Node.js.*
 
-🔹 **Режим разработки:**
+🔹 **Режим разработки**:
 
 ```sh
 npm run dev
@@ -42,6 +42,7 @@ npm run dev
 - 📜 [Список статей](http://localhost:3000/articles/list) – `GET /articles/list`
 - 📖 [Детали статьи](http://localhost:3000/articles/list/1) – `GET /articles/list/:articleId`
 - ➕ [Добавить статью](http://localhost:3000/articles/add) – `GET /articles/add` и `POST /articles/add`
+- 🗑️ [Удалить статью](http://localhost:3000/articles/remove/:articleId) – `POST /articles/remove/:articleId`
 
 📌 **Аутентификация**:
 
@@ -54,7 +55,7 @@ npm run dev
 
 - 🎨 **Изменение темы** – `POST /settings/theme`
   
-  > **Примечание**: Запрос доступен через Postman. Пример запроса показан ниже:
+  > **Примечание**: Запрос доступен через Postman. Пример запроса показан ниже (доступно две темы light и dark):
   
   <img src="image.png" alt="Пример POST-запроса изменения темы в Postman" width="600">
 
@@ -106,3 +107,10 @@ PORT=xxxx - порт сервера, который установлен в пр
 - **cookie-parser** – для работы с куками.
 - **celebrate** – для валидации запросов.
 - **uuid** – для генерации уникальных идентификаторов.
+
+---
+
+## 🛠️ Middleware
+
+- **authMiddleware** – Проверяет, аутентифицирован ли пользователь.
+- **themeMiddleware** – Устанавливает тему интерфейса на основе куки.
