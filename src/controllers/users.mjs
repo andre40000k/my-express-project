@@ -1,11 +1,15 @@
-import users from "../../database/users.json" with  { type: "json" };
+import { User } from "../models/user.mjs";
 
-export const getUsersHandler = (req, res) => {
-  res.render("pug/users", { users: users });
+export const getUsersHandler = async (req, res) => {
+  res.render("pug/users", { users: await User.find() });
 };
 
-export const getUserByIdHandler = (req, res) => {
-  const user = users.find((u) => u.id == req.params.userId);
+export const getUserByIdHandler = async (req, res) => {
+  
+  const { userId } = req.params;
+  const user = await User.findById(userId);
+
+  console.log(user)
   if (user) {
     res.render("pug/user", { user });
   } else {

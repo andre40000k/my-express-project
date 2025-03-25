@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <title>
+            <%= 'Add articles' %>
+        </title>
+        <link rel="icon" href="/favicon.ico">
+</head>
+
+<body>
+        <div class="container">
+            <h1 class="my-4">
+                <%= 'Новая статья' %>
+            </h1>
+
+            <form action="/articles/add" method="POST">
+                <% if (locals.error) { %>
+                    <div class="alert alert-danger">
+                        <%= error %>
+                    </div>
+                    <% } %>
+
+                        <div class="form-group">
+                            <label for="title">Заголовок:</label>
+                            <input type="text" class="form-control <%= locals.errors?.title ? 'is-invalid' : '' %>"
+                                id="title" name="title" value="<%= locals.article?.title || '' %>" required>
+                            <% if (locals.errors?.title) { %>
+                                <div class="invalid-feedback">
+                                    <%= errors.title.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="content">Содержание:</label>
+                            <textarea class="form-control <%= locals.errors?.content ? 'is-invalid' : '' %>"
+                                id="content" name="content" rows="10"
+                                required><%= locals.article?.content || '' %></textarea>
+                            <% if (locals.errors?.content) { %>
+                                <div class="invalid-feedback">
+                                    <%= errors.content.msg %>
+                                </div>
+                                <% } %>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Создать статью</button>
+                        <a href="/articles/list" class="btn btn-secondary">Отмена</a>
+            </form>
+        </div>
+</body>
+
+</html>
