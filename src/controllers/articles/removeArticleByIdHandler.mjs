@@ -2,7 +2,6 @@ import { Article } from "../../models/article.mjs";
 
 export const removeArticleByIdHandler = async (req, res) => {
   try {
-    console.log(req.params);
     const result = await Article.deleteOne({ _id: req.params.articleId });
 
     if (result.deletedCount > 0) {

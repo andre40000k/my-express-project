@@ -47,6 +47,12 @@
                         <button type="submit" class="btn btn-primary">Создать статью</button>
                         <a href="/articles/list" class="btn btn-secondary">Отмена</a>
             </form>
+
+            <form action="/articles/generate" method="POST" onsubmit="return confirm('Вы уверены?')">
+                <button type="submit" class="btn btn-danger">
+                    ⚠️ Сгенерировать тестовые статьи
+                </button>
+            </form>
         </div>
 </body>
 
