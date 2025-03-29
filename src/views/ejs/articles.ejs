@@ -1,24 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 
 <head>
-    <title>List of articles</title>
-    <link rel="icon" href="/favicon.ico">
+    <meta charset="UTF-8">
+    <title>All articles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .article-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .article-link {
+            font-size: 1.1rem;
+            padding: 8px 0;
+            display: block;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>All articles</h1>
-    <a href="/articles/add" class="btn btn-secondary">Написать статтью</a>
-    <ul>
-        <% articles.forEach(article=> { %>
-            <li>
-                <a href="/articles/list/<%= article._id %>">
-                    <%= article.title %>
-                </a>
-            </li>
-            <% }) %>
-    </ul>
-    <a href="/articles/add" class="btn btn-secondary">Написать статтью</a>
+<body class="container mt-4">
+    <h1 class="mb-4">Все статьи</h1>
+
+    <a href="/" class="btn btn-primary mb-3">Main</a>
+
+    <a href="/articles/add" class="btn btn-primary mb-3">Новая статья</a>
+
+    <% if (articles.length===0) { %>
+        <div class="alert alert-info">Статьи не найдены</div>
+        <% } else { %>
+            <ul class="article-list">
+                <% articles.forEach(article=> { %>
+                    <li>
+                        <a href="/articles/list/<%= article._id %>" class="article-link text-decoration-none">
+                            <%= article.title %>
+                        </a>
+                    </li>
+                    <% }) %>
+            </ul>
+
+            <div class="pagination mt-4">
+                <% if (hasPrev) { %>
+                    <a href="/articles/list?lastId=<%= prevLastId %>&direction=prev"
+                        class="btn btn-outline-primary me-2">
+                        ← Назад
+                    </a>
+                    <% } %>
+
+                        <% if (hasNext) { %>
+                            <a href="/articles/list?lastId=<%= nextLastId %>" class="btn btn-outline-primary">
+                                Вперед →
+                            </a>
+                            <% } %>
+            </div>
+            <% } %>
 </body>
 
 </html>
