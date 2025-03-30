@@ -2,7 +2,7 @@ import { fa, faker } from "@faker-js/faker";
 import { v4 as uuidv4 } from "uuid";
 import { Article } from "../../models/article.mjs";
 
-const TOTAL_ARTICLES = 50;
+const TOTAL_ARTICLES = 3;
 
 export const generateArticleHandler = async (req, res) => {
     try {
@@ -12,7 +12,7 @@ export const generateArticleHandler = async (req, res) => {
         articles.push({
           _id: uuidv4(),
           title: faker.lorem.sentence(1),
-          content: faker.lorem.paragraphs(faker.number.int({ min: 1, max: 10 })),
+          content: faker.lorem.paragraphs(faker.number.int({ min: 1, max: 1 })),
           createdAt: faker.date.past({ years: 1 }),
         });
       }
