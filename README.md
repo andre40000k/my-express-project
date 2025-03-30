@@ -34,34 +34,46 @@ npm run dev
 
 📌 **Пользователи**:
 
-- 📋 [Список пользователей](http://localhost:3000/users) – `GET /users` доступна после авторизации. Также применяется тема (авторизация валидна 1 день, куки темы – 10 секунд).
-- 🔍 [Детали пользователя](http://localhost:3000/users/1) – `GET /users/:userId` доступна после авторизации.
+- 📋 [Список пользователей](http://localhost:3000/users) – `GET /users`  
+  *Возвращает список всех пользователей. Доступно только после авторизации.*
+- 🔍 [Детали пользователя](http://localhost:3000/users/1) – `GET /users/:userId`  
+  *Возвращает информацию о конкретном пользователе по его ID.*
 
 📌 **Статьи**:
 
-- 📜 [Список статей](http://localhost:3000/articles/list) – `GET /articles/list`
-- 📖 [Детали статьи](http://localhost:3000/articles/list/1) – `GET /articles/list/:articleId`
-- ➕ [Добавить статью](http://localhost:3000/articles/add) – `GET /articles/add` и `POST /articles/add`
-- 🗑️ [Удалить статью](http://localhost:3000/articles/remove/:articleId) – `POST /articles/remove/:articleId`
+- 📜 [Список статей](http://localhost:3000/articles/list) – `GET /articles/list`  
+  *Возвращает список всех статей.*
+- 📖 [Детали статьи](http://localhost:3000/articles/list/:articleId) – `GET /articles/list/:articleId`  
+  *Возвращает информацию о статье по её ID.*
+- ➕ [Добавить статью](http://localhost:3000/articles/add) – `GET /articles/add` и `POST /articles/add`  
+  *Позволяет добавить новую статью.*
+- 🗑️ [Удалить статью](http://localhost:3000/articles/remove/:articleId) – `POST /articles/remove/:articleId`  
+  *Удаляет статью по её ID.*
+- ⚙️ [Генерация тестовых статей](http://localhost:3000/articles/generate) – `POST /articles/generate`  
+  *Генерирует тестовые статьи с использованием библиотеки Faker.*
+- 📊 [Статистика статей](http://localhost:3000/articles/statistic) – `GET /articles/statistic` и `POST /articles/statistic`  
+  *Возвращает статистику статей, включая самую новую, самую старую и самую длинную статьи(используя агрегационный запрос).*
 
 📌 **Аутентификация**:
 
-- 🔐 [Регистрация](http://localhost:3000/auth/register) – `POST /auth/register`
-- 🔑 [Вход](http://localhost:3000/auth/login) – `POST /auth/login`
-- 🚪 [Выход](http://localhost:3000/auth/logout) – `GET /auth/logout`
-- 🔗 [Google OAuth](http://localhost:3000/auth/google) – `GET /auth/google` и `GET /auth/google/callback`
+- 🔐 [Регистрация](http://localhost:3000/auth/register) – `POST /auth/register`  
+  *Позволяет зарегистрировать нового пользователя.*
+- 🔑 [Вход](http://localhost:3000/auth/login) – `POST /auth/login`  
+  *Позволяет пользователю войти в систему.*
+- 🚪 [Выход](http://localhost:3000/auth/logout) – `GET /auth/logout`  
+  *Выходит из системы, удаляя сессию пользователя.*
+- 🔗 [Google OAuth](http://localhost:3000/auth/google) – `GET /auth/google` и `GET /auth/google/callback`  
+  *Позволяет пользователю войти через Google.*
 
 📌 **Настройки**:
 
-- 🎨 **Изменение темы** – `POST /settings/theme`
-  
-  > **Примечание**: Запрос доступен через Postman. Пример запроса показан ниже (доступно две темы light и dark):
-  
-  <img src="image.png" alt="Пример POST-запроса изменения темы в Postman" width="600">
+- 🎨 **Изменение темы** – `POST /settings/theme`  
+  *Позволяет изменить тему интерфейса (light или dark).*
 
 📌 **Корневой маршрут**:
 
-- 🌐 [Главная страница](http://localhost:3000/) – `GET /`
+- 🌐 [Главная страница](http://localhost:3000/) – `GET /`  
+  *Возвращает главную страницу приложения.*
 
 ---
 
@@ -72,14 +84,14 @@ npm run dev
 ### 📌 Стратегии аутентификации:
 
 1. **Локальная аутентификация** – через имя пользователя и пароль.
-2. **Google OAuth** – перед использованием необходимо создать `.env` (или убрать разрешение .example  в файле .env.example, для теста) файл в корне проекта и указать следующие переменные окружения:
+2. **Google OAuth** – перед использованием необходимо создать `.env` файл в корне проекта и указать следующие переменные окружения:
 
 ```
 GOOGLE_CLIENT_ID=xxxx 
 GOOGLE_CLIENT_SECRET=xxxx
 SESSION_SECRET=xxxx
-MONGODB_URI=xxxx - ссылка на бд (наприер MongoDB)
-PORT=xxxx - порт сервера, который установлен в проэкте (по умолчянию в текущем проэкте установлен "3000")
+MONGODB_URI=xxxx
+PORT=xxxx
 ```
 
 ⚠️ **Важно!** Убедитесь, что переменные окружения корректно настроены перед запуском проекта.
