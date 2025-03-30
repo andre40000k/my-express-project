@@ -42,7 +42,7 @@ npm run dev
 📌 **Статьи**:
 
 - 📜 [Список статей](http://localhost:3000/articles/list) – `GET /articles/list`  
-  *Возвращает список всех статей.*
+  *Возвращает список всех статей. NEW*
 - 📖 [Детали статьи](http://localhost:3000/articles/list/:articleId) – `GET /articles/list/:articleId`  
   *Возвращает информацию о статье по её ID.*
 - ➕ [Добавить статью](http://localhost:3000/articles/add) – `GET /articles/add` и `POST /articles/add`  
@@ -50,9 +50,9 @@ npm run dev
 - 🗑️ [Удалить статью](http://localhost:3000/articles/remove/:articleId) – `POST /articles/remove/:articleId`  
   *Удаляет статью по её ID.*
 - ⚙️ [Генерация тестовых статей](http://localhost:3000/articles/generate) – `POST /articles/generate`  
-  *Генерирует тестовые статьи с использованием библиотеки Faker.*
+  *Генерирует тестовые статьи с использованием библиотеки Faker. NEW*
 - 📊 [Статистика статей](http://localhost:3000/articles/statistic) – `GET /articles/statistic` и `POST /articles/statistic`  
-  *Возвращает статистику статей, включая самую новую, самую старую и самую длинную статьи(используя агрегационный запрос).*
+  *Возвращает статистику статей, включая самую новую, самую старую и самую длинную статьи(используя агрегационный запрос). NEW*
 
 📌 **Аутентификация**:
 
