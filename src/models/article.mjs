@@ -8,6 +8,10 @@ const articleSchema = new mongoose.Schema({
   },
   title: String,
   content: String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export const Article = mongoose.model("Article", articleSchema); 

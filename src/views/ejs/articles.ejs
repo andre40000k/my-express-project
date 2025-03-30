@@ -16,6 +16,12 @@
             padding: 8px 0;
             display: block;
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
     </style>
 </head>
 
@@ -23,7 +29,6 @@
     <h1 class="mb-4">Все статьи</h1>
 
     <a href="/" class="btn btn-primary mb-3">Main</a>
-
     <a href="/articles/add" class="btn btn-primary mb-3">Новая статья</a>
 
     <% if (articles.length===0) { %>
@@ -34,24 +39,38 @@
                     <li>
                         <a href="/articles/list/<%= article._id %>" class="article-link text-decoration-none">
                             <%= article.title %>
+                                <small class="text-muted">(<%= new Date(article.createdAt).toLocaleDateString() %>
+                                        )</small>
                         </a>
                     </li>
                     <% }) %>
             </ul>
 
-            <div class="pagination mt-4">
-                <% if (hasPrev) { %>
-                    <a href="/articles/list?lastId=<%= prevLastId %>&direction=prev"
-                        class="btn btn-outline-primary me-2">
+            <div class="pagination">
+                <% if (currentPage> 1) { %>
+                    <a href="/articles/list?page=<%= currentPage-1 %>" class="btn btn-outline-primary me-2">
                         ← Назад
                     </a>
                     <% } %>
 
-                        <% if (hasNext) { %>
-                            <a href="/articles/list?lastId=<%= nextLastId %>" class="btn btn-outline-primary">
-                                Вперед →
-                            </a>
-                            <% } %>
+                        <% for (let i=1; i <=totalPages; i++) { %>
+                            <% if (i===currentPage) { %>
+                                <span class="btn btn-primary mx-1">
+                                    <%= i %>
+                                </span>
+                                <% } else { %>
+                                    <a href="/articles/list?page=<%= i %>" class="btn btn-outline-primary mx-1">
+                                        <%= i %>
+                                    </a>
+                                    <% } %>
+                                        <% } %>
+
+                                            <% if (currentPage < totalPages) { %>
+                                                <a href="/articles/list?page=<%= currentPage+1 %>"
+                                                    class="btn btn-outline-primary ms-2">
+                                                    Вперед →
+                                                </a>
+                                                <% } %>
             </div>
             <% } %>
 </body>

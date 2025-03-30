@@ -1,45 +1,26 @@
 import { Article } from "../../models/article.mjs";
 
 export const getArticlesHandler = async (req, res) => {
-  try {
-    const limit = 10;
-    const { lastId, direction } = req.query;
+   try {
+     const page = parseInt(req.query.page) || 1;
+     const limit = 10;
+     const skip = (page - 1) * limit;
 
-    let query = {};
-    let sortDirection = 1;
+     const totalArticles = await Article.countDocuments();
+     const totalPages = Math.ceil(totalArticles / limit);
 
-    if (lastId) {
-      if (direction === "prev") {
-        query = { _id: { $lt: lastId } };
-        sortDirection = -1;
-      } else {
-        query = { _id: { $gt: lastId } };
-      }
-    }
+     const articles = await Article.find()
+       .sort({ createdAt: -1 })
+       .skip(skip)
+       .limit(limit);
 
-    let articles = await Article.find(query).sort({ _id: sortDirection }).limit(limit).lean();
-
-    if (direction === "prev") {
-      articles.reverse();
-    }
-
-    // TODO FIX PAGINATION let a = await Article.countDocuments({ _id: { $lt: firstArticleId } });
-
-    const hasNext = articles.length === limit;
-    console.log(req.query);
-    const hasPrev = !!lastId;
-
-    const nextLastId = hasNext ? articles[articles.length - 1]?._id : null;
-    const prevLastId = hasPrev ? articles[0]?._id : null;
-
-    res.render("ejs/articles.ejs", {
-      articles,
-      hasNext,
-      hasPrev,
-      nextLastId,
-      prevLastId
-    });
-  } catch (error) {
-    console.error("Cann`t get articles:", error);
-  }
+     res.render("ejs/articles.ejs", {
+       articles,
+       currentPage: page,
+       totalPages,
+     });
+   } catch (err) {
+     console.error(err);
+     res.status(500).send("Server Error");
+   }
 };
