@@ -72,8 +72,3 @@ app.use(errors());
 app.listen(process.env.PORT, () => {
   console.log(`Сервер запущен на http://localhost:${process.env.PORT}`);
 });
-
-// http://localhost:3000/users – список пользователей
-// http://localhost:3000/users/1 – детали пользователя
-// http://localhost:3000/articles – список статей
-// http://localhost:3000/articles/1 – детали статьи
