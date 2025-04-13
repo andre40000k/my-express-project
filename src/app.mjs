@@ -14,6 +14,8 @@ import "./auth/passport.mjs";
 import session from "express-session";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
+import cors from "cors";
+
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -26,6 +28,15 @@ const app = express();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 app.use(express.static(path.join(__dirname, "./public")));
 app.use(favicon(path.join(__dirname, "./public/favicon.ico")));
