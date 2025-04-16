@@ -9,8 +9,7 @@ export const setupLocalStrategy = () => {
       if (!user) return done(null, false, { message: "User not found" });
 
       const isValidPassword = await bcrypt.compare(password, user.password);
-      if (!isValidPassword) 
-        return done(null, false, { message: "Wrong password" });
+      if (!isValidPassword) return done(null, false, { message: "Wrong password" });
 
       return done(null, user);
     } catch (err) {
